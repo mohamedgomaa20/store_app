@@ -11,9 +11,9 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // GetAllProductsService.getAllProducts();
+          GetAllProductsService.getAllProducts();
           // GetAllCategoriesService.getAllCategories();
-          GetCategoryService.getCategory("jewelery");
+          // GetCategoryService.getCategory("jewelery");
         },
       ),
     );
