@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/models/product_model.dart';
-import 'package:store_app/services/get_all_categories_service.dart';
-import 'package:store_app/services/get_all_product_service.dart';
-import 'package:store_app/services/get_category_service.dart';
-import 'package:http/http.dart' as http;
-
-import '../helper/api.dart';
+import 'package:store_app/services/add_product_service.dart';
+import 'package:store_app/services/update_product_service.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -15,19 +11,15 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          // GetAllProductsService.getAllProducts();
-          // GetAllCategoriesService.getAllCategories();
-          // GetCategoryService.getCategory("jewelery");
-          await Api.post(
-            url: "https://fakestoreapi.com/products",
-            body: {
-              "title": "mmm",
-              "price": "100",
-              "description": "mmm",
-              "image": "https://fakestoreapi.com",
-              "category": "men's clothing",
-            },
+          ProductModel productModel = await UpdateProductService.updateProduct(
+            id: "1",
+            title: "777777777777777777777777777",
+            price: 120,
+            description: "777777777777777777777777777777777",
+            category: "men's clothing",
+            image: "https://fakestoreapi.com",
           );
+          print("productModel: ${productModel.title}");
         },
         child: const Icon(Icons.add),
       ),
