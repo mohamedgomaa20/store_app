@@ -9,7 +9,7 @@ class AddProductService {
     required String image,
     required String category,
   }) async {
-    var data = await Api.post(
+    Map<String, dynamic> data = await Api.post(
       url: "https://fakestoreapi.com/products",
       body: {
         "title": title,

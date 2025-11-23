@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:store_app/models/product_model.dart';
 import 'package:store_app/services/add_product_service.dart';
 import 'package:store_app/services/update_product_service.dart';
+import 'package:store_app/widgets/category_item.dart';
+
+import '../widgets/categories_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -9,20 +13,16 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          ProductModel productModel = await UpdateProductService.updateProduct(
-            id: "1",
-            title: "777777777777777777777777777",
-            price: 120,
-            description: "777777777777777777777777777777777",
-            category: "men's clothing",
-            image: "https://fakestoreapi.com",
-          );
-          print("productModel: ${productModel.title}");
-        },
-        child: const Icon(Icons.add),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 15.0),
+        child: Column(
+          children: [
+            Gap(100),
+            CategoriesWidget(),
+          ],
+        ),
       ),
     );
   }
+
 }
