@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
- import 'package:store_app/widgets/custom_app_bar.dart';
+import 'package:store_app/widgets/custom_app_bar.dart';
 
 import '../models/product_model.dart';
 import '../widgets/cart_item.dart';
@@ -37,9 +37,7 @@ class MyCartScreen extends StatelessWidget {
                 itemCount: displayProducts.length,
                 itemBuilder: (context, index) {
                   return CartItemWidget(
-                    imageUrl: displayProducts[index].image,
-                    title: displayProducts[index].title,
-                    price: displayProducts[index].price,
+                    productModel: displayProducts[index],
                     initialQuantity: 1,
                     onRemove: () {},
                   );

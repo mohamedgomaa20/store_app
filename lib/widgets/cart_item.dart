@@ -1,24 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:store_app/models/product_model.dart';
 import '../utils/app_colors.dart';
 import 'cached_image_widget.dart';
 
 class CartItemWidget extends StatefulWidget {
   const CartItemWidget({
     super.key,
-    required this.imageUrl,
-    required this.title,
-    required this.price,
     this.initialQuantity = 1,
-
     required this.onRemove,
+    required this.productModel,
   });
 
-  final String imageUrl;
-  final String title;
-  final double price;
   final int initialQuantity;
+  final ProductModel productModel;
 
   final VoidCallback onRemove;
 
@@ -62,7 +58,7 @@ class _CartItemWidgetState extends State<CartItemWidget> {
           SizedBox(
             height: 100,
             width: 100,
-            child: CachedImageWidget(imageUrl: widget.imageUrl),
+            child: CachedImageWidget(imageUrl: widget.productModel.image),
           ),
 
           Gap(10),
@@ -76,7 +72,7 @@ class _CartItemWidgetState extends State<CartItemWidget> {
                   children: [
                     Expanded(
                       child: Text(
-                        widget.title,
+                        widget.productModel.title,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(
@@ -102,7 +98,7 @@ class _CartItemWidgetState extends State<CartItemWidget> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "\$${widget.price}",
+                      "\$${widget.productModel.price}",
                       style: TextStyle(
                         fontSize: 14,
                         color: AppColors.primaryColor,
