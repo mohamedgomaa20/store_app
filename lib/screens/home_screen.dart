@@ -44,7 +44,9 @@ class HomeScreen extends StatelessWidget {
                 }
                 return Expanded(
                   child: ProductsGrid(
-                    products: provider.allProducts,
+                    products: provider.selectedCategory == "all"
+                        ? provider.allProducts
+                        : provider.filteredProducts,
                     isLoading: provider.isLoading,
                   ),
                 );

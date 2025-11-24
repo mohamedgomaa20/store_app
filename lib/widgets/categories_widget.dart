@@ -6,31 +6,23 @@ import 'package:store_app/utils/app_colors.dart';
 import '../providers/product_provider.dart';
 import 'category_item.dart';
 
-class CategoriesWidget extends StatefulWidget {
+class CategoriesWidget extends StatelessWidget {
   const CategoriesWidget({super.key});
 
-  @override
-  State<CategoriesWidget> createState() => _CategoriesWidgetState();
-}
+  final List<String> getDummyCategories = const [
+    "all",
+    "electronics",
+    "jewelery",
+    "men's clothing",
+    "women's clothing",
+    "men's clothing",
+  ];
 
-List<String> getDummyCategories = [
-  "all",
-  "electronics",
-  "jewelery",
-  "men's clothing",
-  "women's clothing",
-  "men's clothing",
-];
-int selectedIndex = 0;
-
-class _CategoriesWidgetState extends State<CategoriesWidget> {
   @override
   Widget build(BuildContext context) {
     return Consumer<ProductProvider>(
       builder: (context, provider, child) {
-        final categories = ['all', ...provider.categoriesList];
-        print(provider.categoriesList);
-
+        final categories = provider.categoriesList;
         List<String> categoriesDisplay = categories.length == 1
             ? getDummyCategories
             : categories;
@@ -49,10 +41,11 @@ class _CategoriesWidgetState extends State<CategoriesWidget> {
               padding: EdgeInsets.only(left: 15, right: 5),
               itemBuilder: (context, index) {
                 return CategoryItem(
-                  isSelected: selectedIndex == index,
+                  isSelected: provider.selectedIndex == index,
                   categoryName: categoriesDisplay[index],
                   onTap: () {
-                    setState(() => selectedIndex = index);
+                    provider.changeCategoryIndex(index);
+                    provider.getProductsByCategory(categoriesDisplay[index]);
                   },
                 );
               },

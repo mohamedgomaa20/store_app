@@ -11,15 +11,17 @@ class ProductCard extends StatelessWidget {
     super.key,
     this.isLoading = false,
     required this.productModel,
+    this.onTap,
   });
 
   final bool isLoading;
   final ProductModel productModel;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: MediaQuery.sizeOf(context).width / 2 - 20,
+    return GestureDetector(
+      onTap: isLoading ? null : onTap,
       child: Card(
         color: AppColors.white,
         clipBehavior: Clip.antiAlias,
@@ -63,8 +65,8 @@ class ProductCard extends StatelessWidget {
                 ),
                 if (!isLoading)
                   Positioned(
-                    right: 10,
-                    top: 10,
+                    right: 8,
+                    top: 0,
                     child: Container(
                       width: 35,
                       decoration: BoxDecoration(
@@ -77,9 +79,37 @@ class ProductCard extends StatelessWidget {
                           true
                               ? FontAwesomeIcons.solidHeart
                               : FontAwesomeIcons.heart,
-                          color: AppColors.white,
+                          color: AppColors.red,
                           size: 18,
                         ),
+                      ),
+                    ),
+                  ),
+
+                if (productModel.rating != null && !isLoading)
+                  Positioned(
+                    top: 8,
+                    left: 8,
+                    child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                      decoration: BoxDecoration(
+                        color: AppColors.black.withValues(alpha: 0.7),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(Icons.star, color: AppColors.gold, size: 16),
+                          Gap(4),
+                          Text(
+                            productModel.rating!.rate.toString(),
+                            style: TextStyle(
+                              color: AppColors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
@@ -89,6 +119,7 @@ class ProductCard extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 8),
               child: Column(
+                crossAxisAlignment: .start,
                 children: [
                   Text(
                     productModel.title,
@@ -97,36 +128,15 @@ class ProductCard extends StatelessWidget {
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                   ),
                   Gap(8),
-                  Row(
-                    children: [
-                      Text(
-                        "\$ ${productModel.price}",
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                          color: AppColors.gray,
-                        ),
-                      ),
-                      Gap(10),
-                      FaIcon(
-                        FontAwesomeIcons.solidStar,
-                        color: AppColors.gold,
-                        size: 14,
-                      ),
-                      Gap(5),
-                      Text(
-                        "${productModel.rating!.rate}",
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                          color: AppColors.gray,
-                        ),
-                      ),
-                    ],
+                  Text(
+                    "\$ ${productModel.price}",
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                      color: AppColors.gray,
+                    ),
                   ),
                 ],
               ),

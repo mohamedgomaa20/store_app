@@ -3,13 +3,18 @@ import 'package:store_app/models/product_model.dart';
 import 'package:store_app/services/get_all_categories_service.dart';
 import 'package:store_app/services/get_all_product_service.dart';
 
+import '../services/get_products_by_category_service.dart';
+
 class ProductProvider extends ChangeNotifier {
   List<ProductModel> allProducts = [];
+  List<ProductModel> filteredProducts = [];
   bool isLoading = false;
   bool isLoadingCategories = false;
   String? error;
   String? errorCategory;
-  List<String> categoriesList = [];
+  List<String> categoriesList = ["all"];
+  String selectedCategory = "all";
+  int selectedIndex = 0;
 
   ProductProvider() {
     getAllProducts();
@@ -38,7 +43,8 @@ class ProductProvider extends ChangeNotifier {
     errorCategory = null;
     notifyListeners();
     try {
-      categoriesList = await GetAllCategoriesService.getAllCategories();
+      var list = await GetAllCategoriesService.getAllCategories();
+      categoriesList.addAll(list.map((e) => e.toString()).toList());
       isLoadingCategories = false;
       errorCategory = null;
       notifyListeners();
@@ -47,5 +53,36 @@ class ProductProvider extends ChangeNotifier {
       isLoadingCategories = false;
       notifyListeners();
     }
+  }
+
+  Future<void> getProductsByCategory(String categoryName) async {
+    selectedCategory = categoryName;
+    isLoading = true;
+    error = null;
+    notifyListeners();
+
+    try {
+      if (categoryName == "all") {
+        filteredProducts = allProducts;
+      } else {
+        filteredProducts =
+            await GetProductsByCategoryService.getProductsByCategory(
+              categoryName,
+            );
+      }
+      isLoading = false;
+      error = null;
+      notifyListeners();
+    } catch (e) {
+      error = 'Failed to load products: ${e.toString()}';
+      isLoading = false;
+      notifyListeners();
+    }
+  }
+
+  void changeCategoryIndex(int index) {
+    selectedCategory = categoriesList[index];
+    selectedIndex = index;
+    notifyListeners();
   }
 }
