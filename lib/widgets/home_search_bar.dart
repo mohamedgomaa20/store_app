@@ -18,10 +18,10 @@ class HomeSearchBar extends StatelessWidget {
             Container(
               width: double.infinity,
               margin: const EdgeInsets.symmetric(horizontal: 15),
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
               decoration: BoxDecoration(
-                color: AppColors.primaryColor.withValues(alpha: 0.2),
-                borderRadius: BorderRadius.circular(20),
+                color: AppColors.white ,
+                borderRadius: BorderRadius.circular(12),
                 border: Border.all(
                   color: AppColors.primaryColor.withValues(alpha: 0.3),
                   width: 1.5,
@@ -46,9 +46,9 @@ class HomeSearchBar extends StatelessWidget {
                   const Spacer(),
 
                   Container(
-                    padding: const EdgeInsets.all(8),
+                    padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(10),
                       gradient: LinearGradient(
                         colors: [
                           AppColors.primaryColor.withValues(alpha: 0.7),
