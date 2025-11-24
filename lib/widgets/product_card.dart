@@ -2,13 +2,19 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
+import 'package:store_app/models/product_model.dart';
 import 'package:store_app/utils/app_colors.dart';
 import 'package:store_app/widgets/skeltonnizer_for_image.dart';
 
 class ProductCard extends StatelessWidget {
-  const ProductCard({super.key, this.isLoading = false});
+  const ProductCard({
+    super.key,
+    this.isLoading = false,
+    required this.productModel,
+  });
 
   final bool isLoading;
+  final ProductModel productModel;
 
   @override
   Widget build(BuildContext context) {
@@ -25,10 +31,9 @@ class ProductCard extends StatelessWidget {
                 ClipRRect(
                   borderRadius: .circular(12),
                   child: CachedNetworkImage(
-                    imageUrl:
-                        "https://tse4.mm.bing.net/th/id/OIF.JmvQQwbFeQBf7agEJugPPg?pid=Api&P=0&h=220",
+                    imageUrl: productModel.image,
                     height: 200,
-                    fit: .cover,
+                    fit: .contain,
                     placeholder: (context, url) {
                       return SkeletonizerForImage();
                     },
@@ -75,7 +80,7 @@ class ProductCard extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    "Mobile Mobile Mobile  Mobile  Mobile ",
+                    productModel.title,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
@@ -84,7 +89,7 @@ class ProductCard extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        "\$ 1,190",
+                        "\$ ${productModel.price}",
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
@@ -101,7 +106,7 @@ class ProductCard extends StatelessWidget {
                       ),
                       Gap(5),
                       Text(
-                        "5.0",
+                        "${productModel.rating!.rate}",
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(

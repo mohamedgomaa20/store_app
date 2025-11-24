@@ -30,7 +30,10 @@ class CategoryItem extends StatelessWidget {
           ),
         ),
         child: Text(
-          categoryName,
+          categoryName.replaceFirst(
+            categoryName[0],
+            categoryName[0].toUpperCase(),
+          ),
           style: TextStyle(
             color: isSelected ? Colors.white : AppColors.primaryColor,
             fontWeight: FontWeight.w500,
