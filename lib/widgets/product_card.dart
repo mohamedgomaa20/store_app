@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
 import 'package:store_app/utils/app_colors.dart';
+import 'package:store_app/widgets/skeltonnizer_for_image.dart';
 
 class ProductCard extends StatelessWidget {
   const ProductCard({super.key, this.isLoading = false});
@@ -28,6 +29,20 @@ class ProductCard extends StatelessWidget {
                         "https://tse4.mm.bing.net/th/id/OIF.JmvQQwbFeQBf7agEJugPPg?pid=Api&P=0&h=220",
                     height: 200,
                     fit: .cover,
+                    placeholder: (context, url) {
+                      return SkeletonizerForImage();
+                    },
+                    errorWidget: (context, url, error) {
+                      return Container(
+                        width: .infinity,
+                        color: AppColors.primaryColor.withValues(alpha: 0.5),
+                        child: Icon(
+                          Icons.production_quantity_limits_rounded,
+                          color: AppColors.white.withValues(alpha: 0.5),
+                          size: 100,
+                        ),
+                      );
+                    },
                   ),
                 ),
                 if (!isLoading)
