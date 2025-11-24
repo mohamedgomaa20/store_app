@@ -4,23 +4,24 @@ import 'package:store_app/models/product_model.dart';
 import 'package:store_app/services/add_product_service.dart';
 import 'package:store_app/services/update_product_service.dart';
 import 'package:store_app/widgets/category_item.dart';
+import 'package:store_app/widgets/product_card.dart';
 
 import '../widgets/categories_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
-
+  // FaIcon(FontAwesomeIcons.gamepad),
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15.0),
-        child: Column(
-          children: [
-            Gap(100),
-            CategoriesWidget(),
-          ],
-        ),
+      body: Column(
+        children: [
+          Gap(100),
+          CategoriesWidget(),
+          Gap(20),
+          ProductCard(),
+          Gap(20),
+        ],
       ),
     );
   }
