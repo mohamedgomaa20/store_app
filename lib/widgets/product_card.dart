@@ -28,26 +28,37 @@ class ProductCard extends StatelessWidget {
           children: [
             Stack(
               children: [
-                ClipRRect(
-                  borderRadius: .circular(12),
-                  child: CachedNetworkImage(
-                    imageUrl: productModel.image,
-                    height: 200,
-                    fit: .contain,
-                    placeholder: (context, url) {
-                      return SkeletonizerForImage();
-                    },
-                    errorWidget: (context, url, error) {
-                      return Container(
-                        width: .infinity,
-                        color: AppColors.primaryColor.withValues(alpha: 0.5),
-                        child: Icon(
-                          Icons.production_quantity_limits_rounded,
-                          color: AppColors.white.withValues(alpha: 0.5),
-                          size: 100,
-                        ),
-                      );
-                    },
+                SizedBox(
+                  height: 200,
+                  width: .infinity,
+                  child: ClipRRect(
+                    borderRadius: .circular(12),
+                    child: isLoading
+                        ? Container(
+                            height: 200,
+                            width: .infinity,
+                            color: AppColors.gray,
+                          )
+                        : CachedNetworkImage(
+                            imageUrl: productModel.image,
+                            fit: .contain,
+                            placeholder: (context, url) {
+                              return SkeletonizerForImage();
+                            },
+                            errorWidget: (context, url, error) {
+                              return Container(
+                                width: .infinity,
+                                color: AppColors.primaryColor.withValues(
+                                  alpha: 0.5,
+                                ),
+                                child: Icon(
+                                  Icons.production_quantity_limits_rounded,
+                                  color: AppColors.white.withValues(alpha: 0.5),
+                                  size: 100,
+                                ),
+                              );
+                            },
+                          ),
                   ),
                 ),
                 if (!isLoading)
