@@ -13,9 +13,11 @@ class CustomElevatedButton extends StatelessWidget {
     this.fontSize,
     this.iconSize,
     this.backgroundColor,
+    required this.onTap,
   });
 
   final String title;
+  final VoidCallback onTap;
   final IconData? icon;
   final bool isOutLined;
   final double? height;
@@ -27,10 +29,10 @@ class CustomElevatedButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: height ?? 50,
+      height: height ?? 55,
       width: width ?? .infinity,
       child: ElevatedButton.icon(
-        onPressed: () {},
+        onPressed: onTap,
         label: Text(
           title,
           style: TextStyle(

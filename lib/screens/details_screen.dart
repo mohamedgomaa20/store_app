@@ -101,23 +101,58 @@ class DetailsScreen extends StatelessWidget {
                             ),
                           ),
                           Gap(40),
-                          CustomElevatedButton(
-                            title: "Add to cart",
-                            icon: Icons.shopping_cart_outlined,
-                          ),
-                          Gap(10),
-                          CustomElevatedButton(
-                            title: "Share product",
-                            isOutLined: true,
-                            icon: Icons.share,
-                            backgroundColor: AppColors.primaryColor,
-                          ),
                         ],
                       ),
                     ),
                     Gap(10),
                   ],
                 ),
+              ),
+            ),
+
+            Container(
+              padding: .symmetric(horizontal: 20, vertical: 15),
+              decoration: BoxDecoration(
+                color: AppColors.white,
+                border: Border(
+                  top: BorderSide(color: AppColors.primaryColor, width: 1),
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: AppColors.primaryColor.withValues(alpha: 0.1),
+                    blurRadius: 5,
+                    offset: Offset(0, -5),
+                  ),
+                ],
+              ),
+              child: Row(
+                children: [
+                  Column(
+                    children: [
+                      Text(
+                        "price",
+                        style: TextStyle(fontSize: 16, color: AppColors.gray),
+                      ),
+                      Gap(5),
+                      Text(
+                        "\$${productModel.price}",
+                        style: TextStyle(
+                          fontSize: 24,
+                          color: AppColors.primaryColor,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Gap(15),
+                  Expanded(
+                    child: CustomElevatedButton(
+                      title: "Add to cart",
+                      icon: Icons.shopping_cart_outlined,
+                      onTap: () {},
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
