@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
 import 'package:store_app/models/product_model.dart';
 import 'package:store_app/utils/app_colors.dart';
 import 'package:store_app/widgets/cached_image_widget.dart';
+import 'package:store_app/widgets/custom_app_bar.dart';
 
 import '../widgets/custom_button_with_icon.dart';
 import '../widgets/details_app_bar.dart';

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 
 import '../utils/app_colors.dart';
 
@@ -14,6 +15,7 @@ class CustomElevatedButton extends StatelessWidget {
     this.iconSize,
     this.backgroundColor,
     required this.onTap,
+    this.isRightIcon = false,
   });
 
   final String title;
@@ -25,22 +27,15 @@ class CustomElevatedButton extends StatelessWidget {
   final double? fontSize;
   final double? iconSize;
   final Color? backgroundColor;
+  final bool isRightIcon;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: height ?? 55,
       width: width ?? .infinity,
-      child: ElevatedButton.icon(
+      child: ElevatedButton(
         onPressed: onTap,
-        label: Text(
-          title,
-          style: TextStyle(
-            fontSize: fontSize ?? 16,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-        icon: icon == null ? null : Icon(icon, size: iconSize ?? 20),
         style: ElevatedButton.styleFrom(
           foregroundColor: isOutLined
               ? backgroundColor ?? AppColors.primaryColor
@@ -57,6 +52,37 @@ class CustomElevatedButton extends StatelessWidget {
                   : Colors.transparent,
             ),
           ),
+        ),
+
+        child: Row(
+          mainAxisAlignment: .center,
+          children: isRightIcon
+              ? [
+                  Text(
+                    title,
+                    style: TextStyle(
+                      fontSize: fontSize ?? 16,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  if (icon != null) ...[
+                    Gap(10),
+                    Icon(icon, size: iconSize ?? 20),
+                  ],
+                ]
+              : [
+                  if (icon != null) ...[
+                    Icon(icon, size: iconSize ?? 20),
+                    Gap(10),
+                  ],
+                  Text(
+                    title,
+                    style: TextStyle(
+                      fontSize: fontSize ?? 16,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
         ),
       ),
     );

@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
+import 'package:store_app/screens/my_cart_screen.dart';
 import 'package:store_app/widgets/build_error_widget.dart';
 import 'package:store_app/widgets/home_search_bar.dart';
 import 'package:store_app/widgets/products_grid.dart';
@@ -23,9 +25,28 @@ class HomeScreen extends StatelessWidget {
               padding: .only(left: 15.0),
               child: Align(
                 alignment: .centerLeft,
-                child: Text(
-                  'Discover',
-                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 32),
+                child: Row(
+                  mainAxisAlignment: .spaceBetween,
+                  children: [
+                    Text(
+                      'Discover',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 32,
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => MyCartScreen(),
+                          ),
+                        );
+                      },
+                      icon: Icon(CupertinoIcons.cart),
+                    ),
+                  ],
                 ),
               ),
             ),
