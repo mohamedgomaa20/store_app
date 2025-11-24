@@ -5,6 +5,7 @@ import 'package:store_app/services/add_product_service.dart';
 import 'package:store_app/services/update_product_service.dart';
 import 'package:store_app/widgets/category_item.dart';
 import 'package:store_app/widgets/product_card.dart';
+import 'package:store_app/widgets/products_grid.dart';
 
 import '../widgets/categories_widget.dart';
 
@@ -18,8 +19,8 @@ class HomeScreen extends StatelessWidget {
         children: [
           Gap(100),
           CategoriesWidget(),
-          Gap(20),
-          ProductCard(),
+          Gap(5),
+          Expanded(child: ProductsGrid()),
           Gap(20),
         ],
       ),

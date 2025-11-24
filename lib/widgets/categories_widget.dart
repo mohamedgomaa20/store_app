@@ -34,7 +34,7 @@ class _CategoriesWidgetState extends State<CategoriesWidget> {
         child: ListView.builder(
           itemCount: categoriesList.length,
           scrollDirection: Axis.horizontal,
-          padding: EdgeInsets.only(left: 15,right: 5),
+          padding: EdgeInsets.only(left: 15, right: 5),
           itemBuilder: (context, index) {
             return CategoryItem(
               isSelected: selectedIndex == index,

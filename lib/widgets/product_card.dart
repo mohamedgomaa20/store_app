@@ -5,7 +5,9 @@ import 'package:gap/gap.dart';
 import 'package:store_app/utils/app_colors.dart';
 
 class ProductCard extends StatelessWidget {
-  const ProductCard({super.key});
+  const ProductCard({super.key, this.isLoading = false});
+
+  final bool isLoading;
 
   @override
   Widget build(BuildContext context) {
@@ -28,27 +30,28 @@ class ProductCard extends StatelessWidget {
                     fit: .cover,
                   ),
                 ),
-                Positioned(
-                  right: 10,
-                  top: 10,
-                  child: Container(
-                    width: 35,
-                    decoration: BoxDecoration(
-                      color: AppColors.primaryColor,
-                      shape: .circle,
-                    ),
-                    child: IconButton(
-                      onPressed: () {},
-                      icon: FaIcon(
-                        true
-                            ? FontAwesomeIcons.solidHeart
-                            : FontAwesomeIcons.heart,
-                        color: AppColors.white,
-                        size: 18,
+                if (!isLoading)
+                  Positioned(
+                    right: 10,
+                    top: 10,
+                    child: Container(
+                      width: 35,
+                      decoration: BoxDecoration(
+                        color: AppColors.primaryColor,
+                        shape: .circle,
+                      ),
+                      child: IconButton(
+                        onPressed: () {},
+                        icon: FaIcon(
+                          true
+                              ? FontAwesomeIcons.solidHeart
+                              : FontAwesomeIcons.heart,
+                          color: AppColors.white,
+                          size: 18,
+                        ),
                       ),
                     ),
                   ),
-                ),
               ],
             ),
             Gap(10),
