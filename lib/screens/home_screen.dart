@@ -21,59 +21,74 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           children: [
             Gap(20),
-            Padding(
-              padding: .only(left: 15.0),
-              child: Align(
-                alignment: .centerLeft,
-                child: Row(
-                  mainAxisAlignment: .spaceBetween,
-                  children: [
-                    Text(
-                      'Discover',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 32,
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => MyCartScreen(),
-                          ),
-                        );
-                      },
-                      icon: Icon(CupertinoIcons.cart),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            HomeHeader(),
             Gap(16),
             HomeSearchBar(),
             Gap(16),
             CategoriesWidget(),
             Gap(5),
-            Consumer<ProductProvider>(
-              builder: (context, provider, child) {
-                if (provider.error != null) {
-                  return BuildErrorWidget(errorMessage: provider.error!);
-                }
-                if (provider.allProducts.isEmpty) {
-                  NoProductWidget();
-                }
-                return Expanded(
-                  child: ProductsGrid(
-                    products: provider.selectedCategory == "all"
-                        ? provider.allProducts
-                        : provider.filteredProducts,
-                    isLoading: provider.isLoading,
-                  ),
+            ProductsSection(),
+            Gap(20),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class ProductsSection extends StatelessWidget {
+  const ProductsSection({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<ProductProvider>(
+      builder: (context, provider, child) {
+        if (provider.error != null) {
+          return BuildErrorWidget(errorMessage: provider.error!);
+        }
+        if (provider.allProducts.isEmpty) {
+          NoProductWidget();
+        }
+        final products = provider.selectedCategory == "all"
+            ? provider.allProducts
+            : provider.filteredProducts;
+
+        return Expanded(
+          child: ProductsGrid(
+            products: products,
+            isLoading: provider.isLoading,
+          ),
+        );
+      },
+    );
+  }
+}
+
+class HomeHeader extends StatelessWidget {
+  const HomeHeader({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: .only(left: 15.0),
+      child: Align(
+        alignment: .centerLeft,
+        child: Row(
+          mainAxisAlignment: .spaceBetween,
+          children: [
+            Text(
+              'Discover',
+              style: TextStyle(fontWeight: FontWeight.w600, fontSize: 32),
+            ),
+            IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MyCartScreen()),
                 );
               },
+              icon: Icon(CupertinoIcons.cart),
             ),
-            Gap(20),
           ],
         ),
       ),
