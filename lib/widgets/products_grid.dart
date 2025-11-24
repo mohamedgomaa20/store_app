@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:store_app/models/product_model.dart';
+import 'package:store_app/screens/details_screen.dart';
 import 'package:store_app/widgets/product_card.dart';
 
 import '../utils/app_colors.dart';
@@ -21,7 +22,7 @@ class ProductsGrid extends StatelessWidget {
       (index) => ProductModel(
         id: 1,
         title: "",
-        price: 109,
+        price: 109.058,
         description: "",
         category: "",
         image: " ",
@@ -52,6 +53,17 @@ class ProductsGrid extends StatelessWidget {
           return ProductCard(
             isLoading: isLoading,
             productModel: displayProducts[index],
+            onTap: isLoading
+                ? null
+                : () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            DetailsScreen(productModel: displayProducts[index]),
+                      ),
+                    );
+                  },
           );
         },
       ),

@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
 import 'package:store_app/models/product_model.dart';
 import 'package:store_app/utils/app_colors.dart';
+import 'package:store_app/widgets/cached_image_widget.dart';
 import 'package:store_app/widgets/skeltonnizer_for_image.dart';
 
 class ProductCard extends StatelessWidget {
@@ -41,26 +42,7 @@ class ProductCard extends StatelessWidget {
                             width: .infinity,
                             color: AppColors.gray,
                           )
-                        : CachedNetworkImage(
-                            imageUrl: productModel.image,
-                            fit: .contain,
-                            placeholder: (context, url) {
-                              return SkeletonizerForImage();
-                            },
-                            errorWidget: (context, url, error) {
-                              return Container(
-                                width: .infinity,
-                                color: AppColors.primaryColor.withValues(
-                                  alpha: 0.5,
-                                ),
-                                child: Icon(
-                                  Icons.production_quantity_limits_rounded,
-                                  color: AppColors.white.withValues(alpha: 0.5),
-                                  size: 100,
-                                ),
-                              );
-                            },
-                          ),
+                        : CachedImageWidget(imageUrl: productModel.image),
                   ),
                 ),
                 if (!isLoading)
