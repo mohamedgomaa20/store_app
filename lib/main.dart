@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:store_app/providers/product_provider.dart';
 import 'package:store_app/screens/home_screen.dart';
+import 'package:store_app/screens/login_screen.dart';
 
 void main() {
   runApp(const StoreApp());
@@ -20,7 +21,7 @@ class StoreApp extends StatelessWidget {
           fontFamily: "ReadexPro",
           scaffoldBackgroundColor: Colors.white,
         ),
-        home: HomeScreen(),
+        home: LoginScreen(),
       ),
     );
   }

@@ -16,6 +16,7 @@ class CustomElevatedButton extends StatelessWidget {
     this.backgroundColor,
     required this.onTap,
     this.isRightIcon = false,
+    this.isLoading = false,
   });
 
   final String title;
@@ -28,6 +29,7 @@ class CustomElevatedButton extends StatelessWidget {
   final double? iconSize;
   final Color? backgroundColor;
   final bool isRightIcon;
+  final bool isLoading;
 
   @override
   Widget build(BuildContext context) {
@@ -57,18 +59,32 @@ class CustomElevatedButton extends StatelessWidget {
         child: Row(
           mainAxisAlignment: .center,
           children: isRightIcon
+              ? isLoading
+                    ? [
+                        CircularProgressIndicator(
+                          color: AppColors.white,
+                          strokeWidth: 5,
+                        ),
+                      ]
+                    : [
+                        Text(
+                          title,
+                          style: TextStyle(
+                            fontSize: fontSize ?? 16,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        if (icon != null) ...[
+                          Gap(10),
+                          Icon(icon, size: iconSize ?? 20),
+                        ],
+                      ]
+              : isLoading
               ? [
-                  Text(
-                    title,
-                    style: TextStyle(
-                      fontSize: fontSize ?? 16,
-                      fontWeight: FontWeight.w500,
-                    ),
+                  CircularProgressIndicator(
+                    color: AppColors.white,
+                    strokeWidth: 5,
                   ),
-                  if (icon != null) ...[
-                    Gap(10),
-                    Icon(icon, size: iconSize ?? 20),
-                  ],
                 ]
               : [
                   if (icon != null) ...[

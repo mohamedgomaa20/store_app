@@ -28,7 +28,6 @@ class HomeScreen extends StatelessWidget {
             CategoriesWidget(),
             Gap(5),
             ProductsSection(),
-            Gap(20),
           ],
         ),
       ),
