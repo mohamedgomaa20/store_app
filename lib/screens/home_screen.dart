@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:store_app/screens/my_cart_screen.dart';
 import 'package:store_app/services/cart_services/get_all_cart_service.dart';
 import 'package:store_app/services/cart_services/get_cart_by_id_service.dart';
+import 'package:store_app/services/cart_services/get_user_carts_service.dart';
 import 'package:store_app/utils/app_colors.dart';
 import 'package:store_app/widgets/build_error_widget.dart';
 import 'package:store_app/widgets/home_search_bar.dart';
@@ -23,7 +24,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          GetCartByIdService.getCartById(2);
+          GetUserCartsService.getUserCarts(2);
         },
       ),
       body: SafeArea(
