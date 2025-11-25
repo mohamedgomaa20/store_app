@@ -1,11 +1,8 @@
 class CartModel {
-
   final int id;
   final int userId;
   final String date;
-
   final List<CartProduct> products;
-
 
   CartModel({
     required this.id,
@@ -38,7 +35,6 @@ class CartModel {
 
 
 class CartProduct {
-
   final int productId;
   final int quantity;
 

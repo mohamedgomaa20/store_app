@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
 import 'package:store_app/screens/my_cart_screen.dart';
+import 'package:store_app/services/cart_services/get_all_cart_service.dart';
 import 'package:store_app/utils/app_colors.dart';
 import 'package:store_app/widgets/build_error_widget.dart';
 import 'package:store_app/widgets/home_search_bar.dart';
@@ -19,6 +20,11 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          GetAllCartService.getAllCart();
+        },
+      ),
       body: SafeArea(
         child: Column(
           children: [

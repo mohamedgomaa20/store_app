@@ -21,7 +21,7 @@ class StoreApp extends StatelessWidget {
           fontFamily: "ReadexPro",
           scaffoldBackgroundColor: Colors.white,
         ),
-        home: LoginScreen(),
+        home: HomeScreen(),
       ),
     );
   }
