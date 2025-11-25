@@ -1,8 +1,10 @@
+import 'package:circle_nav_bar/circle_nav_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
 import 'package:store_app/screens/my_cart_screen.dart';
+import 'package:store_app/utils/app_colors.dart';
 import 'package:store_app/widgets/build_error_widget.dart';
 import 'package:store_app/widgets/home_search_bar.dart';
 import 'package:store_app/widgets/products_grid.dart';
